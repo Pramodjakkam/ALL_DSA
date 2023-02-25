@@ -1,0 +1,97 @@
+#include<iostream>
+using namespace std;
+struct node
+{
+    node *next;
+    int data;
+
+};
+struct node* head=new node;
+int insertatbeg(int d)
+{
+    struct node *p=new node;
+    p->data=d;
+    p->next=head;
+    head=p;
+
+
+}
+int deleteatbeg()
+{
+    struct node*p=new node;
+    p=head;
+    head=head->next;
+    delete(p);
+}
+int deleteatend()
+{
+    struct node*p=new node;
+    p=head;
+    struct node*q=new node;
+    q=p->next;
+    while(q->next!=NULL)
+    {
+        p=p->next;
+        q=q->next;
+    }
+    p->next=NULL;
+    delete(q);
+}
+int deleteinbetween(int item)
+{
+    struct node*p=new node;
+    p=head;
+    struct node*q=new node;
+    q=p->next;
+    while(q->data!=item)
+    {
+        p=p->next;
+        q=q->next;
+    }
+    p->next=q->next;
+    delete(q);
+}
+int ok()
+{
+    node *ptr=new node;
+    ptr=head;
+    while(ptr!=NULL)
+    {
+        cout<<ptr->data<<endl;
+        ptr=ptr->next;
+       
+    }
+}
+
+int main()
+{
+    struct node *second=new node;
+    struct node *third=new node;
+    struct node *fourth=new node;
+    head->data=45;
+    head->next=second;
+    second->data=65;
+    second->next=third;
+    third->data=78;
+    third->next=fourth;
+    fourth->data=22;
+    fourth->next=NULL;
+    cout<<"Linked list Before"<<endl;
+    ok();
+    // cout<<"Linked list after insertion at the beginning"<<endl;
+    // insertatbeg(12);
+    // ok();
+    // cout<<"Deletion at the beginning of linked list"<<endl;
+    // deleteatbeg();
+    // ok();
+    // cout<<"Deletion at the end of the linked list"<<endl;
+    // deleteatend();
+    // ok();
+    int m;
+    cout<<"Enter the value of a linked list that you want delete"<<endl;
+    cin>>m;
+    cout<<"After deletion"<<endl;
+    deleteinbetween(m);
+    ok();
+    return 0;
+}
